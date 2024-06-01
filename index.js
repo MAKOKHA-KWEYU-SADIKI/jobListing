@@ -10,11 +10,11 @@ fetch('data.json').then((data)=>{
         <div class="sub">
           <img src="${values.logo}" alt="">
           <div class="div1">
-            <p>${values.campany}</p>
+            <p>${values.company}</p>
             <button>${values.new}</button>
             <button>${values.featured}</button>
           </div>
-          <div>${values.posion}</div>
+          <div>${values.position}</div>
           <div class="role">
             <button>${values.role}</button>
             <button>${values.level}</button>
