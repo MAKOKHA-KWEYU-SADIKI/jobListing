@@ -1,33 +1,30 @@
-// index.js
-document.addEventListener('DOMContentLoaded', () => {
-    fetch('data.json')
-        .then(response => response.json())
-        .then(data => {
-            const jobListingsContainer = document.getElementById('job-listings');
-            data.forEach(job => {
-                const jobElement = document.createElement('div');
-                jobElement.classList.add('job');
+fetch('data.json').then((data)=>{
+    return data.json();
+}).then((res)=>{
+    let data1='';
+    
+   
+    res.map((values)=>{
 
-                jobElement.innerHTML = `
-                    <div class="sub">
-                        <img src="${job.logo}" alt="${job.company}">
-                        <div class="div1">
-                            <p>${job.company}</p>
-                            ${job.new ? '<button>new</button>' : ''}
-                            ${job.featured ? '<button>featured</button>' : ''}
-                        </div>
-                        <div>${job.position}</div>
-                        <div class="role" data-role="${job.role}" data-level="${job.level}" data-languages="${job.languages.join(', ')}" data-tools="${job.tools.join(', ')}">
-                            <button>${job.role}</button>
-                            <button>${job.level}</button>
-                            ${job.languages.map(lang => `<button>${lang}</button>`).join('')}
-                            ${job.tools.map(tool => `<button>${tool}</button>`).join('')}
-                        </div>
-                    </div>
-                `;
+        data1+=`
+        <div class="sub">
+          <img src="${values.logo}" alt="">
+          <div class="div1">
+            <p>${values.campany}</p>
+            <button>${values.new}</button>
+            <button>${values.featured}</button>
+          </div>
+          <div>${values.posion}</div>
+          <div class="role">
+            <button>${values.role}</button>
+            <button>${values.level}</button>
+            <button>${values.tools}</button>
+          </div>
+        </div>`;
+       
+    });
+    document.getElementById("job").innerHTML=data1;
 
-                jobListingsContainer.appendChild(jobElement);
-            });
-        })
-        .catch(error => console.error('Error loading job listings:', error));
+}).catch((error)=>{
+    console.log(error)
 });
